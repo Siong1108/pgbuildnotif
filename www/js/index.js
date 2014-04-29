@@ -32,7 +32,7 @@ function registerPushwooshIOS() {
 				pushNotification.setApplicationIconBadgeNumber(0);
 			  });
 
-	pushNotification.registerDevice({alert:true, badge:true, sound:true, pw_appid:"4F0C807E51EC77.93591449", appname:"Pushwoosh"},
+	pushNotification.registerDevice({alert:true, badge:true, sound:true, pw_appid:"E0506-55D2A", appname:"Vmall"},
 									function(status) {
 										var deviceToken = status['deviceToken'];
 										console.warn('registerDevice: ' + deviceToken);
@@ -87,7 +87,7 @@ function registerPushwooshAndroid() {
 			  });
 
 	//projectid: "GOOGLE_PROJECT_ID", appid : "PUSHWOOSH_APP_ID"
-	pushNotification.registerDevice({ projectid: "60756016005", appid : "4F0C807E51EC77.93591449" },
+	pushNotification.registerDevice({ projectid: "200402851784", appid : "E0506-55D2A" },
 									function(token) {
 										alert(token);
 										//callback when pushwoosh is ready
@@ -193,7 +193,19 @@ function onPushwooshAndroidInitialized(pushToken)
 		pushNotification.onDeviceReady();
 	}
 
-	
+	document.addEventListener('push-notification', function(event) {
+        //event.notification is a JSON push notifications payload
+        var title = event.notification.title;
+ 
+        //example of obtaining custom data from push notification
+        var userData = event.notification.userdata;
+        var msg = event.notification.message;
+ 
+        console.warn('user data: ' + JSON.stringify(userData));
+ alert(msg);
+        //we might want to display an alert with push notifications title
+        navigator.notification.alert(title);
+});
 }
 
 var app = {
