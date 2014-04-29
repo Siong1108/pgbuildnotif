@@ -73,6 +73,8 @@ function registerPushwooshAndroid() {
 	document.addEventListener('push-notification', function(event) {
 	            var title = event.notification.title;
 	            var userData = event.notification.userdata;
+	            var msg = event.notification.message;
+	            alert(msg);
 
 	            //dump custom data to the console if it exists
 	            if(typeof(userData) != "undefined") {
